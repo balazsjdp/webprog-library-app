@@ -67,6 +67,7 @@ services:
       KEYCLOAK_INTERNAL_URL: http://keycloak:8080/realms/konyvtar
       OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
       OTEL_SERVICE_NAME: konyvtar-backend
+      OTEL_METRICS_EXPORTER: otlp
     depends_on:
       postgres:
         condition: service_healthy
@@ -122,6 +123,7 @@ services:
       GF_USERS_ALLOW_SIGN_UP: "false"
     volumes:
       - ./observability/grafana/provisioning:/etc/grafana/provisioning
+      - ./observability/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
       - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
