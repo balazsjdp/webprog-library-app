@@ -1,2 +1,3 @@
-// Jest global test setup
-// Database and Redis initialization will be added in the test commit
+import 'reflect-metadata';
+
+process.env.NODE_ENV = 'test';
