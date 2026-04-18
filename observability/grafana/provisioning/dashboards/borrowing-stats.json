@@ -2,7 +2,7 @@
   "title": "Borrowing Stats",
   "uid": "borrowing-stats",
   "schemaVersion": 38,
-  "version": 1,
+  "version": 2,
   "refresh": "1m",
   "time": { "from": "now-24h", "to": "now" },
   "templating": { "list": [] },

@@ -27,9 +27,10 @@ export const AdminController = {
   },
 
   async updateBook(req: Request, res: Response): Promise<void> {
-    const { title, author, isbn, description, publisher, publishedYear, genre, coverImageUrl } =
+    const { title, author, isbn, description, publisher, publishedYear, genre, coverImageUrl, totalCopies } =
       req.body as Record<string, unknown>;
-    const book = await BookService.update(req.params.id, {
+
+    const updateData: Parameters<typeof BookService.update>[1] = {
       ...(title ? { title: String(title) } : {}),
       ...(author ? { author: String(author) } : {}),
       isbn: isbn !== undefined ? (isbn ? String(isbn) : null) : undefined,
@@ -38,7 +39,17 @@ export const AdminController = {
       publishedYear: publishedYear !== undefined ? (publishedYear ? Number(publishedYear) : null) : undefined,
       genre: genre !== undefined ? (genre ? String(genre) : null) : undefined,
       coverImageUrl: coverImageUrl !== undefined ? (coverImageUrl ? String(coverImageUrl) : null) : undefined,
-    });
+    };
+
+    if (totalCopies !== undefined) {
+      const newTotal = Math.max(1, Number(totalCopies));
+      const existing = await BookService.getById(req.params.id);
+      const delta = newTotal - existing.totalCopies;
+      updateData.totalCopies = newTotal;
+      updateData.availableCopies = Math.max(0, existing.availableCopies + delta);
+    }
+
+    const book = await BookService.update(req.params.id, updateData);
     res.json(book);
   },
 
