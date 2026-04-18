@@ -21,7 +21,7 @@ export class Borrowing {
   @Column('uuid')
   userId!: string;
 
-  @Column({ length: 300 })
+  @Column({ type: 'varchar', length: 300 })
   userName!: string;
 
   @Column('uuid')

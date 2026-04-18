@@ -10,37 +10,37 @@ export class Book {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ length: 500 })
+  @Column({ type: 'varchar', length: 500 })
   title!: string;
 
-  @Column({ length: 300 })
+  @Column({ type: 'varchar', length: 300 })
   author!: string;
 
-  @Column({ length: 13, unique: true, nullable: true })
+  @Column({ type: 'varchar', length: 13, unique: true, nullable: true })
   isbn!: string | null;
 
-  @Column('text', { nullable: true })
+  @Column({ type: 'text', nullable: true })
   description!: string | null;
 
-  @Column({ length: 100, nullable: true })
+  @Column({ type: 'varchar', length: 100, nullable: true })
   publisher!: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'int', nullable: true })
   publishedYear!: number | null;
 
-  @Column({ length: 100, nullable: true })
+  @Column({ type: 'varchar', length: 100, nullable: true })
   genre!: string | null;
 
-  @Column({ default: 1 })
+  @Column({ type: 'int', default: 1 })
   totalCopies!: number;
 
-  @Column({ default: 1 })
+  @Column({ type: 'int', default: 1 })
   availableCopies!: number;
 
-  @Column({ length: 500, nullable: true })
+  @Column({ type: 'varchar', length: 500, nullable: true })
   coverImageUrl!: string | null;
 
-  @Column({ default: true })
+  @Column({ type: 'boolean', default: true })
   isActive!: boolean;
 
   @CreateDateColumn()
