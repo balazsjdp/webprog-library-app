@@ -10,7 +10,7 @@ export default function BookCard({ book }: Props) {
   return (
     <Link
       to={`/books/${book.id}`}
-      className="bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow overflow-hidden flex flex-col"
+      className="bg-graphite rounded-lg border border-graphite/60 hover:border-verdigris/50 transition-colors overflow-hidden flex flex-col"
     >
       <BookCoverImage
         coverImageUrl={book.coverImageUrl}
@@ -18,13 +18,13 @@ export default function BookCard({ book }: Props) {
         className="w-full h-48"
       />
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-2">
+        <h3 className="font-semibold text-snow text-sm leading-tight line-clamp-2">
           {book.title}
         </h3>
-        <p className="text-gray-500 text-xs mt-1">{book.author}</p>
+        <p className="text-pearl-aqua/60 text-xs mt-1">{book.author}</p>
 
         {book.genre && (
-          <span className="mt-2 inline-block text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full w-fit">
+          <span className="mt-2 inline-block text-xs bg-verdigris/20 text-verdigris px-2 py-0.5 rounded-full w-fit">
             {book.genre}
           </span>
         )}
@@ -32,7 +32,7 @@ export default function BookCard({ book }: Props) {
         <div className="mt-auto pt-3">
           <span
             className={`text-xs font-medium ${
-              book.availableCopies > 0 ? 'text-green-600' : 'text-red-500'
+              book.availableCopies > 0 ? 'text-verdigris' : 'text-red-400'
             }`}
           >
             {book.availableCopies > 0

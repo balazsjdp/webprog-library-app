@@ -7,9 +7,9 @@ export default function Header() {
   const isAdmin = roles.includes('admin');
 
   return (
-    <header className="bg-blue-700 text-white shadow-md">
+    <header className="bg-graphite border-b border-graphite/60 shadow-md">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="text-xl font-bold tracking-tight hover:text-blue-100">
+        <Link to="/" className="text-xl font-bold tracking-tight text-snow hover:text-pearl-aqua transition-colors">
           📚 Könyvtár
         </Link>
 
@@ -17,7 +17,9 @@ export default function Header() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? 'text-white font-semibold underline' : 'text-blue-100 hover:text-white'
+              isActive
+                ? 'text-verdigris font-semibold'
+                : 'text-pearl-aqua/70 hover:text-snow transition-colors'
             }
             end
           >
@@ -28,7 +30,9 @@ export default function Header() {
             <NavLink
               to="/my-borrowings"
               className={({ isActive }) =>
-                isActive ? 'text-white font-semibold underline' : 'text-blue-100 hover:text-white'
+                isActive
+                  ? 'text-verdigris font-semibold'
+                  : 'text-pearl-aqua/70 hover:text-snow transition-colors'
               }
             >
               Kölcsönzéseim
@@ -39,20 +43,22 @@ export default function Header() {
             <NavLink
               to="/admin"
               className={({ isActive }) =>
-                isActive ? 'text-white font-semibold underline' : 'text-blue-100 hover:text-white'
+                isActive
+                  ? 'text-verdigris font-semibold'
+                  : 'text-pearl-aqua/70 hover:text-snow transition-colors'
               }
             >
               Admin
             </NavLink>
           )}
 
-          <div className="ml-4 border-l border-blue-500 pl-4">
+          <div className="ml-4 border-l border-graphite/60 pl-4">
             {isAuthenticated ? (
               <div className="flex items-center gap-3">
-                <span className="text-blue-100 text-xs">{user?.preferredUsername}</span>
+                <span className="text-pearl-aqua/70 text-xs">{user?.preferredUsername}</span>
                 <button
                   onClick={() => keycloak.logout({ redirectUri: window.location.origin })}
-                  className="bg-white text-blue-700 text-xs px-3 py-1 rounded hover:bg-blue-50 font-medium"
+                  className="bg-verdigris text-snow text-xs px-3 py-1 rounded hover:bg-pearl-aqua hover:text-onyx font-medium transition-colors"
                 >
                   Kijelentkezés
                 </button>
@@ -60,7 +66,7 @@ export default function Header() {
             ) : (
               <button
                 onClick={() => keycloak.login()}
-                className="bg-white text-blue-700 text-xs px-3 py-1 rounded hover:bg-blue-50 font-medium"
+                className="bg-verdigris text-snow text-xs px-3 py-1 rounded hover:bg-pearl-aqua hover:text-onyx font-medium transition-colors"
               >
                 Bejelentkezés
               </button>

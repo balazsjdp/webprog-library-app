@@ -20,9 +20,9 @@ export default function MyBorrowingsPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Kölcsönzéseim</h1>
+      <h1 className="text-2xl font-bold text-snow mb-6">Kölcsönzéseim</h1>
 
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-6 border-b border-graphite/40">
         {TABS.map((tab) => (
           <button
             key={tab.label}
@@ -32,8 +32,8 @@ export default function MyBorrowingsPage() {
             }}
             className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
               status === tab.value
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-verdigris text-verdigris'
+                : 'border-transparent text-pearl-aqua/60 hover:text-snow'
             }`}
           >
             {tab.label}
@@ -44,7 +44,7 @@ export default function MyBorrowingsPage() {
       {isLoading && <LoadingSpinner />}
 
       {isError && (
-        <p className="text-center text-red-500 py-10">Hiba történt a kölcsönzések betöltésekor.</p>
+        <p className="text-center text-red-400 py-10">Hiba történt a kölcsönzések betöltésekor.</p>
       )}
 
       {data && (

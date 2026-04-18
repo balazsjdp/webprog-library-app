@@ -26,15 +26,15 @@ export default function OpenLibraryImportModal({ onClose }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-        <div className="p-6 border-b">
-          <h2 className="text-lg font-bold text-gray-900 mb-3">Open Library importálás</h2>
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+      <div className="bg-graphite rounded-xl border border-graphite/60 shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+        <div className="p-6 border-b border-graphite/60">
+          <h2 className="text-lg font-bold text-snow mb-3">Open Library importálás</h2>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Keresés cím vagy szerző alapján…"
-            className="w-full border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full bg-onyx border border-graphite/60 text-snow placeholder:text-pearl-aqua/30 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-verdigris"
             autoFocus
           />
         </div>
@@ -43,11 +43,11 @@ export default function OpenLibraryImportModal({ onClose }: Props) {
           {isLoading && <LoadingSpinner />}
 
           {query.length > 2 && !isLoading && data?.length === 0 && (
-            <p className="text-center text-gray-400 py-8">Nincs találat.</p>
+            <p className="text-center text-pearl-aqua/50 py-8">Nincs találat.</p>
           )}
 
           {query.length <= 2 && (
-            <p className="text-center text-gray-400 py-8 text-sm">
+            <p className="text-center text-pearl-aqua/50 py-8 text-sm">
               Írj be legalább 3 karaktert a kereséshez.
             </p>
           )}
@@ -65,10 +65,10 @@ export default function OpenLibraryImportModal({ onClose }: Props) {
           </div>
         </div>
 
-        <div className="p-4 border-t flex justify-end">
+        <div className="p-4 border-t border-graphite/60 flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm border rounded-lg hover:bg-gray-50"
+            className="px-4 py-2 text-sm border border-graphite/60 text-pearl-aqua/70 rounded-lg hover:bg-onyx transition-colors"
           >
             Bezárás
           </button>
@@ -87,7 +87,7 @@ interface RowProps {
 
 function OLResultRow({ result, isImporting, isImported, onImport }: RowProps) {
   return (
-    <div className="flex gap-3 items-center border rounded-lg p-3">
+    <div className="flex gap-3 items-center border border-graphite/60 rounded-lg p-3 hover:border-verdigris/40 transition-colors">
       <div className="flex-shrink-0 w-12 h-16">
         <BookCoverImage
           coverImageUrl={result.coverUrl}
@@ -96,11 +96,11 @@ function OLResultRow({ result, isImporting, isImported, onImport }: RowProps) {
         />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="font-medium text-sm text-gray-900 truncate">{result.title}</p>
-        <p className="text-xs text-gray-500">{result.author}</p>
-        {result.isbn && <p className="text-xs text-gray-400">ISBN: {result.isbn}</p>}
+        <p className="font-medium text-sm text-snow truncate">{result.title}</p>
+        <p className="text-xs text-pearl-aqua/70">{result.author}</p>
+        {result.isbn && <p className="text-xs text-pearl-aqua/50">ISBN: {result.isbn}</p>}
         {result.publishedYear && (
-          <p className="text-xs text-gray-400">{result.publishedYear}</p>
+          <p className="text-xs text-pearl-aqua/50">{result.publishedYear}</p>
         )}
       </div>
       <button
@@ -108,8 +108,8 @@ function OLResultRow({ result, isImporting, isImported, onImport }: RowProps) {
         disabled={isImporting || isImported}
         className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${
           isImported
-            ? 'bg-green-50 text-green-700 cursor-default'
-            : 'bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed'
+            ? 'bg-verdigris/20 text-verdigris cursor-default'
+            : 'bg-verdigris text-snow hover:bg-pearl-aqua hover:text-onyx disabled:opacity-60 disabled:cursor-not-allowed'
         }`}
       >
         {isImported ? 'Importálva' : isImporting ? '…' : 'Importálás'}

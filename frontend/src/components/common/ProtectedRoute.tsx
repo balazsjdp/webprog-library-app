@@ -21,8 +21,8 @@ export default function ProtectedRoute({ children, requiredRole }: Props) {
   if (requiredRole && !roles.includes(requiredRole)) {
     return (
       <div className="text-center py-20">
-        <h2 className="text-2xl font-bold text-red-600">Hozzáférés megtagadva</h2>
-        <p className="text-gray-500 mt-2">Nincs jogosultságod ennek az oldalnak a megtekintéséhez.</p>
+        <h2 className="text-2xl font-bold text-red-400">Hozzáférés megtagadva</h2>
+        <p className="text-pearl-aqua/60 mt-2">Nincs jogosultságod ennek az oldalnak a megtekintéséhez.</p>
       </div>
     );
   }

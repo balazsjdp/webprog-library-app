@@ -20,6 +20,9 @@ const EMPTY: BookFormData = {
   coverImageUrl: '',
 };
 
+const inputCls =
+  'w-full bg-onyx border border-graphite/60 text-snow placeholder:text-pearl-aqua/30 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-verdigris';
+
 export default function BookFormModal({ book, onClose }: Props) {
   const create = useCreateBook();
   const update = useUpdateBook();
@@ -73,66 +76,42 @@ export default function BookFormModal({ book, onClose }: Props) {
   const isPending = create.isPending || update.isPending;
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+      <div className="bg-graphite rounded-xl border border-graphite/60 shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
+          <h2 className="text-lg font-bold text-snow mb-4">
             {book ? 'Könyv szerkesztése' : 'Új könyv hozzáadása'}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Field label="Cím *">
-              <input
-                required
-                value={form.title}
-                onChange={(e) => set('title', e.target.value)}
-                className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
+              <input required value={form.title} onChange={(e) => set('title', e.target.value)} className={inputCls} />
             </Field>
 
             <Field label="Szerző *">
-              <input
-                required
-                value={form.author}
-                onChange={(e) => set('author', e.target.value)}
-                className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
+              <input required value={form.author} onChange={(e) => set('author', e.target.value)} className={inputCls} />
             </Field>
 
             <div className="grid grid-cols-2 gap-3">
               <Field label="ISBN">
-                <input
-                  value={form.isbn ?? ''}
-                  onChange={(e) => set('isbn', e.target.value)}
-                  className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
+                <input value={form.isbn ?? ''} onChange={(e) => set('isbn', e.target.value)} className={inputCls} />
               </Field>
               <Field label="Megjelenés éve">
                 <input
                   type="number"
                   value={form.publishedYear ?? ''}
-                  onChange={(e) =>
-                    set('publishedYear', e.target.value ? Number(e.target.value) : undefined)
-                  }
-                  className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  onChange={(e) => set('publishedYear', e.target.value ? Number(e.target.value) : undefined)}
+                  className={inputCls}
                 />
               </Field>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <Field label="Kiadó">
-                <input
-                  value={form.publisher ?? ''}
-                  onChange={(e) => set('publisher', e.target.value)}
-                  className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
+                <input value={form.publisher ?? ''} onChange={(e) => set('publisher', e.target.value)} className={inputCls} />
               </Field>
               <Field label="Műfaj">
-                <input
-                  value={form.genre ?? ''}
-                  onChange={(e) => set('genre', e.target.value)}
-                  className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
+                <input value={form.genre ?? ''} onChange={(e) => set('genre', e.target.value)} className={inputCls} />
               </Field>
             </div>
 
@@ -143,7 +122,7 @@ export default function BookFormModal({ book, onClose }: Props) {
                 min={1}
                 value={form.totalCopies}
                 onChange={(e) => set('totalCopies', Number(e.target.value))}
-                className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className={inputCls}
               />
             </Field>
 
@@ -151,7 +130,7 @@ export default function BookFormModal({ book, onClose }: Props) {
               <input
                 value={form.coverImageUrl ?? ''}
                 onChange={(e) => set('coverImageUrl', e.target.value)}
-                className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className={inputCls}
                 placeholder="https://..."
               />
             </Field>
@@ -161,24 +140,24 @@ export default function BookFormModal({ book, onClose }: Props) {
                 value={form.description ?? ''}
                 onChange={(e) => set('description', e.target.value)}
                 rows={3}
-                className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+                className={`${inputCls} resize-none`}
               />
             </Field>
 
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {error && <p className="text-red-400 text-sm">{error}</p>}
 
             <div className="flex justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-sm border rounded-lg hover:bg-gray-50"
+                className="px-4 py-2 text-sm border border-graphite/60 text-pearl-aqua/70 rounded-lg hover:bg-onyx transition-colors"
               >
                 Mégse
               </button>
               <button
                 type="submit"
                 disabled={isPending}
-                className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-60"
+                className="px-4 py-2 text-sm bg-verdigris text-snow rounded-lg hover:bg-pearl-aqua hover:text-onyx transition-colors disabled:opacity-60"
               >
                 {isPending ? 'Mentés…' : 'Mentés'}
               </button>
@@ -193,7 +172,7 @@ export default function BookFormModal({ book, onClose }: Props) {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-xs font-medium text-gray-700 mb-1">{label}</label>
+      <label className="block text-xs font-medium text-pearl-aqua/70 mb-1">{label}</label>
       {children}
     </div>
   );

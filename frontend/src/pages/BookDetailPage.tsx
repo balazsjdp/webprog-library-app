@@ -19,8 +19,8 @@ export default function BookDetailPage() {
   if (isError || !book) {
     return (
       <div className="text-center py-20">
-        <p className="text-red-500 text-lg mb-4">A könyv nem található.</p>
-        <Link to="/" className="text-blue-600 hover:underline text-sm">
+        <p className="text-red-400 text-lg mb-4">A könyv nem található.</p>
+        <Link to="/" className="text-verdigris hover:text-pearl-aqua transition-colors text-sm">
           ← Vissza a listához
         </Link>
       </div>
@@ -29,11 +29,11 @@ export default function BookDetailPage() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Link to="/" className="text-blue-600 hover:underline text-sm mb-6 inline-block">
+      <Link to="/" className="text-verdigris hover:text-pearl-aqua transition-colors text-sm mb-6 inline-block">
         ← Vissza a listához
       </Link>
 
-      <div className="bg-white rounded-xl shadow-sm border p-6 flex flex-col sm:flex-row gap-8">
+      <div className="bg-graphite rounded-xl border border-graphite/60 p-6 flex flex-col sm:flex-row gap-8">
         <div className="flex-shrink-0 w-full sm:w-48">
           <BookCoverImage
             coverImageUrl={book.coverImageUrl}
@@ -43,29 +43,29 @@ export default function BookDetailPage() {
         </div>
 
         <div className="flex-1 min-w-0">
-          <h1 className="text-2xl font-bold text-gray-900 leading-tight">{book.title}</h1>
-          <p className="text-gray-600 mt-1">{book.author}</p>
+          <h1 className="text-2xl font-bold text-snow leading-tight">{book.title}</h1>
+          <p className="text-pearl-aqua/70 mt-1">{book.author}</p>
 
           {book.genre && (
-            <span className="mt-3 inline-block text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">
+            <span className="mt-3 inline-block text-xs bg-verdigris/20 text-verdigris px-2 py-1 rounded-full">
               {book.genre}
             </span>
           )}
 
-          <div className="mt-4 space-y-1 text-sm text-gray-600">
+          <div className="mt-4 space-y-1 text-sm text-pearl-aqua/70">
             {book.isbn && (
               <p>
-                <span className="font-medium text-gray-800">ISBN:</span> {book.isbn}
+                <span className="font-medium text-snow">ISBN:</span> {book.isbn}
               </p>
             )}
             {book.publisher && (
               <p>
-                <span className="font-medium text-gray-800">Kiadó:</span> {book.publisher}
+                <span className="font-medium text-snow">Kiadó:</span> {book.publisher}
               </p>
             )}
             {book.publishedYear && (
               <p>
-                <span className="font-medium text-gray-800">Megjelent:</span>{' '}
+                <span className="font-medium text-snow">Megjelent:</span>{' '}
                 {book.publishedYear}
               </p>
             )}
@@ -74,7 +74,7 @@ export default function BookDetailPage() {
           <div className="mt-4">
             <span
               className={`text-sm font-semibold ${
-                book.availableCopies > 0 ? 'text-green-600' : 'text-red-500'
+                book.availableCopies > 0 ? 'text-verdigris' : 'text-red-400'
               }`}
             >
               {book.availableCopies > 0
@@ -84,7 +84,7 @@ export default function BookDetailPage() {
           </div>
 
           {book.description && (
-            <p className="mt-4 text-gray-700 text-sm leading-relaxed">{book.description}</p>
+            <p className="mt-4 text-pearl-aqua/70 text-sm leading-relaxed">{book.description}</p>
           )}
 
           <div className="mt-6">

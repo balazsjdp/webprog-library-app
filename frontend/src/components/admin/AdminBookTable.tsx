@@ -17,14 +17,14 @@ export default function AdminBookTable({ books, onEdit }: Props) {
   };
 
   if (books.length === 0) {
-    return <p className="text-center text-gray-400 py-10">Nincs könyv.</p>;
+    return <p className="text-center text-pearl-aqua/50 py-10">Nincs könyv.</p>;
   }
 
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm text-left">
         <thead>
-          <tr className="border-b text-gray-500 text-xs uppercase tracking-wide">
+          <tr className="border-b border-graphite/60 text-pearl-aqua/50 text-xs uppercase tracking-wide">
             <th className="py-3 pr-4">Cím / Szerző</th>
             <th className="py-3 pr-4">Műfaj</th>
             <th className="py-3 pr-4">Példány</th>
@@ -34,17 +34,17 @@ export default function AdminBookTable({ books, onEdit }: Props) {
         </thead>
         <tbody>
           {books.map((book) => (
-            <tr key={book.id} className="border-b hover:bg-gray-50">
+            <tr key={book.id} className="border-b border-graphite/40 hover:bg-graphite/50 transition-colors">
               <td className="py-3 pr-4">
-                <p className="font-medium text-gray-800">{book.title}</p>
-                <p className="text-xs text-gray-400">{book.author}</p>
+                <p className="font-medium text-snow">{book.title}</p>
+                <p className="text-xs text-pearl-aqua/50">{book.author}</p>
               </td>
-              <td className="py-3 pr-4 text-gray-600">{book.genre ?? '—'}</td>
-              <td className="py-3 pr-4 text-gray-600">{book.totalCopies}</td>
+              <td className="py-3 pr-4 text-pearl-aqua/70">{book.genre ?? '—'}</td>
+              <td className="py-3 pr-4 text-pearl-aqua/70">{book.totalCopies}</td>
               <td className="py-3 pr-4">
                 <span
                   className={`text-xs font-medium ${
-                    book.availableCopies > 0 ? 'text-green-600' : 'text-red-500'
+                    book.availableCopies > 0 ? 'text-verdigris' : 'text-red-400'
                   }`}
                 >
                   {book.availableCopies}
@@ -54,7 +54,7 @@ export default function AdminBookTable({ books, onEdit }: Props) {
                 <div className="flex gap-2">
                   <button
                     onClick={() => onEdit(book)}
-                    className="text-xs px-3 py-1 border rounded hover:bg-gray-100"
+                    className="text-xs px-3 py-1 border border-graphite/60 text-pearl-aqua/70 rounded hover:bg-graphite hover:text-snow transition-colors"
                   >
                     Szerkesztés
                   </button>
@@ -63,13 +63,13 @@ export default function AdminBookTable({ books, onEdit }: Props) {
                       <button
                         onClick={() => handleDelete(book.id)}
                         disabled={deleteMutation.isPending}
-                        className="text-xs px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+                        className="text-xs px-2 py-1 bg-red-600 text-snow rounded hover:bg-red-700 disabled:opacity-50"
                       >
                         Törlés
                       </button>
                       <button
                         onClick={() => setConfirmId(null)}
-                        className="text-xs px-2 py-1 border rounded hover:bg-gray-100"
+                        className="text-xs px-2 py-1 border border-graphite/60 text-pearl-aqua/70 rounded hover:bg-graphite transition-colors"
                       >
                         Mégse
                       </button>
@@ -77,7 +77,7 @@ export default function AdminBookTable({ books, onEdit }: Props) {
                   ) : (
                     <button
                       onClick={() => setConfirmId(book.id)}
-                      className="text-xs px-3 py-1 border border-red-200 text-red-600 rounded hover:bg-red-50"
+                      className="text-xs px-3 py-1 border border-red-500/30 text-red-400 rounded hover:bg-red-500/10 transition-colors"
                     >
                       Törlés
                     </button>

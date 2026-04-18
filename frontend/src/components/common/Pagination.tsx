@@ -14,12 +14,14 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pr
     return currentPage - 3 + i;
   });
 
+  const base = 'px-3 py-1 rounded border text-sm transition-colors';
+
   return (
     <div className="flex justify-center items-center gap-1 mt-6">
       <button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className="px-3 py-1 rounded border text-sm disabled:opacity-40 hover:bg-gray-100"
+        className={`${base} border-graphite/60 text-pearl-aqua/70 hover:bg-graphite hover:text-snow disabled:opacity-30 disabled:cursor-not-allowed`}
       >
         ‹
       </button>
@@ -28,10 +30,10 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pr
         <button
           key={p}
           onClick={() => onPageChange(p)}
-          className={`px-3 py-1 rounded border text-sm ${
+          className={`${base} ${
             p === currentPage
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'hover:bg-gray-100'
+              ? 'bg-verdigris text-snow border-verdigris'
+              : 'border-graphite/60 text-pearl-aqua/70 hover:bg-graphite hover:text-snow'
           }`}
         >
           {p}
@@ -41,7 +43,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pr
       <button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className="px-3 py-1 rounded border text-sm disabled:opacity-40 hover:bg-gray-100"
+        className={`${base} border-graphite/60 text-pearl-aqua/70 hover:bg-graphite hover:text-snow disabled:opacity-30 disabled:cursor-not-allowed`}
       >
         ›
       </button>

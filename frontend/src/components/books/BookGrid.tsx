@@ -8,7 +8,7 @@ interface Props {
 export default function BookGrid({ books }: Props) {
   if (books.length === 0) {
     return (
-      <div className="text-center py-16 text-gray-400">
+      <div className="text-center py-16 text-pearl-aqua/50">
         <p className="text-lg">Nem találtunk könyvet.</p>
         <p className="text-sm mt-1">Próbálj más keresési feltételeket.</p>
       </div>

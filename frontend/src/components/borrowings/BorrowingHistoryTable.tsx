@@ -12,9 +12,9 @@ const STATUS_LABEL: Record<BorrowingStatus, string> = {
 };
 
 const STATUS_CLASS: Record<BorrowingStatus, string> = {
-  active: 'bg-blue-50 text-blue-700',
-  returned: 'bg-green-50 text-green-700',
-  overdue: 'bg-red-50 text-red-700',
+  active: 'bg-verdigris/20 text-verdigris',
+  returned: 'bg-pearl-aqua/20 text-pearl-aqua',
+  overdue: 'bg-red-500/20 text-red-400',
 };
 
 function formatDate(iso: string) {
@@ -25,14 +25,14 @@ export default function BorrowingHistoryTable({ borrowings }: Props) {
   const returnMutation = useReturnMutation();
 
   if (borrowings.length === 0) {
-    return <p className="text-center text-gray-400 py-10">Nincs kölcsönzési előzmény.</p>;
+    return <p className="text-center text-pearl-aqua/50 py-10">Nincs kölcsönzési előzmény.</p>;
   }
 
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm text-left">
         <thead>
-          <tr className="border-b text-gray-500 text-xs uppercase tracking-wide">
+          <tr className="border-b border-graphite/60 text-pearl-aqua/50 text-xs uppercase tracking-wide">
             <th className="py-3 pr-4">Könyv</th>
             <th className="py-3 pr-4">Kölcsönzés</th>
             <th className="py-3 pr-4">Határidő</th>
@@ -43,16 +43,16 @@ export default function BorrowingHistoryTable({ borrowings }: Props) {
         </thead>
         <tbody>
           {borrowings.map((b) => (
-            <tr key={b.id} className="border-b hover:bg-gray-50">
-              <td className="py-3 pr-4 font-medium text-gray-800">
+            <tr key={b.id} className="border-b border-graphite/40 hover:bg-graphite/50 transition-colors">
+              <td className="py-3 pr-4 font-medium text-snow">
                 {b.book?.title ?? '—'}
                 {b.book?.author && (
-                  <div className="text-xs text-gray-400 font-normal">{b.book.author}</div>
+                  <div className="text-xs text-pearl-aqua/50 font-normal">{b.book.author}</div>
                 )}
               </td>
-              <td className="py-3 pr-4 text-gray-600">{formatDate(b.borrowedAt)}</td>
-              <td className="py-3 pr-4 text-gray-600">{formatDate(b.dueDate)}</td>
-              <td className="py-3 pr-4 text-gray-600">
+              <td className="py-3 pr-4 text-pearl-aqua/70">{formatDate(b.borrowedAt)}</td>
+              <td className="py-3 pr-4 text-pearl-aqua/70">{formatDate(b.dueDate)}</td>
+              <td className="py-3 pr-4 text-pearl-aqua/70">
                 {b.returnedAt ? formatDate(b.returnedAt) : '—'}
               </td>
               <td className="py-3 pr-4">
@@ -67,7 +67,7 @@ export default function BorrowingHistoryTable({ borrowings }: Props) {
                   <button
                     onClick={() => returnMutation.mutate(b.id)}
                     disabled={returnMutation.isPending}
-                    className="text-xs px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50"
+                    className="text-xs px-3 py-1 rounded border border-graphite/60 text-pearl-aqua/70 hover:bg-graphite hover:text-snow transition-colors disabled:opacity-50"
                   >
                     Visszahozás
                   </button>

@@ -20,7 +20,7 @@ export default function BorrowButton({ bookId, availableCopies, alreadyBorrowed 
     return (
       <button
         onClick={() => keycloak.login()}
-        className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+        className="w-full sm:w-auto px-6 py-2 bg-verdigris text-snow rounded-lg text-sm font-medium hover:bg-pearl-aqua hover:text-onyx transition-colors"
       >
         Bejelentkezés a kölcsönzéshez
       </button>
@@ -31,7 +31,7 @@ export default function BorrowButton({ bookId, availableCopies, alreadyBorrowed 
     return (
       <button
         disabled
-        className="w-full sm:w-auto px-6 py-2 bg-gray-100 text-gray-500 rounded-lg text-sm font-medium cursor-not-allowed"
+        className="w-full sm:w-auto px-6 py-2 bg-graphite text-pearl-aqua/40 rounded-lg text-sm font-medium cursor-not-allowed border border-graphite/60"
       >
         Már kölcsönözted
       </button>
@@ -42,7 +42,7 @@ export default function BorrowButton({ bookId, availableCopies, alreadyBorrowed 
     return (
       <button
         disabled
-        className="w-full sm:w-auto px-6 py-2 bg-gray-100 text-gray-500 rounded-lg text-sm font-medium cursor-not-allowed"
+        className="w-full sm:w-auto px-6 py-2 bg-graphite text-pearl-aqua/40 rounded-lg text-sm font-medium cursor-not-allowed border border-graphite/60"
       >
         Nem elérhető
       </button>
@@ -51,11 +51,11 @@ export default function BorrowButton({ bookId, availableCopies, alreadyBorrowed 
 
   if (success) {
     return (
-      <div className="flex items-center gap-2 text-green-600 font-medium text-sm">
+      <div className="flex items-center gap-2 text-verdigris font-medium text-sm">
         <span>Sikeresen kikölcsönözve!</span>
         <button
           onClick={() => navigate('/my-borrowings')}
-          className="underline hover:no-underline"
+          className="underline hover:no-underline text-pearl-aqua"
         >
           Saját kölcsönzések
         </button>
@@ -71,7 +71,7 @@ export default function BorrowButton({ bookId, availableCopies, alreadyBorrowed 
         });
       }}
       disabled={borrow.isPending}
-      className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+      className="w-full sm:w-auto px-6 py-2 bg-verdigris text-snow rounded-lg text-sm font-medium hover:bg-pearl-aqua hover:text-onyx transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {borrow.isPending ? 'Kölcsönzés…' : 'Kölcsönzés'}
     </button>

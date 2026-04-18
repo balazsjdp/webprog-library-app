@@ -38,7 +38,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Könyvek</h1>
+      <h1 className="text-2xl font-bold text-snow mb-6">Könyvek</h1>
 
       <BookSearchBar
         search={search}
@@ -52,14 +52,14 @@ export default function HomePage() {
       {isLoading && <LoadingSpinner />}
 
       {isError && (
-        <p className="text-center text-red-500 py-10">
+        <p className="text-center text-red-400 py-10">
           Hiba történt a könyvek betöltésekor.
         </p>
       )}
 
       {data && (
         <>
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="text-sm text-pearl-aqua/50 mb-4">
             {data.meta.total} könyv található
           </p>
           <BookGrid books={data.data} />

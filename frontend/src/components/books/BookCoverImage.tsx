@@ -12,7 +12,7 @@ export default function BookCoverImage({ coverImageUrl, title, className = '' }:
   if (!coverImageUrl || errored) {
     return (
       <div
-        className={`bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center ${className}`}
+        className={`bg-gradient-to-br from-graphite to-onyx flex items-center justify-center ${className}`}
       >
         <span className="text-5xl select-none">📖</span>
       </div>

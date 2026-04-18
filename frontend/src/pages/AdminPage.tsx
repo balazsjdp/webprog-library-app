@@ -26,17 +26,17 @@ export default function AdminPage() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Admin felület</h1>
+      <h1 className="text-2xl font-bold text-snow mb-6">Admin felület</h1>
 
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-6 border-b border-graphite/40">
         {(['books', 'borrowings'] as Tab[]).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
             className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
               tab === t
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-verdigris text-verdigris'
+                : 'border-transparent text-pearl-aqua/60 hover:text-snow'
             }`}
           >
             {t === 'books' ? 'Könyvek' : 'Kölcsönzések'}
@@ -49,13 +49,13 @@ export default function AdminPage() {
           <div className="flex gap-3 mb-4">
             <button
               onClick={() => setShowCreateModal(true)}
-              className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="px-4 py-2 text-sm bg-verdigris text-snow rounded-lg hover:bg-pearl-aqua hover:text-onyx transition-colors"
             >
               + Új könyv
             </button>
             <button
               onClick={() => setShowOLModal(true)}
-              className="px-4 py-2 text-sm border rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-sm border border-graphite/60 text-pearl-aqua/70 rounded-lg hover:bg-graphite hover:text-snow transition-colors"
             >
               Open Library importálás
             </button>
