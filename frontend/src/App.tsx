@@ -1,7 +1,42 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './api/client';
+import Layout from './components/layout/Layout';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import HomePage from './pages/HomePage';
+import BookDetailPage from './pages/BookDetailPage';
+import MyBorrowingsPage from './pages/MyBorrowingsPage';
+import AdminPage from './pages/AdminPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-gray-800">Könyvtár App</h1>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/books/:id" element={<BookDetailPage />} />
+            <Route
+              path="/my-borrowings"
+              element={
+                <ProtectedRoute>
+                  <MyBorrowingsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute requiredRole="admin">
+                  <AdminPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
