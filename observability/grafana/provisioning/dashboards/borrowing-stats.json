@@ -5,15 +5,17 @@
   "version": 1,
   "refresh": "1m",
   "time": { "from": "now-24h", "to": "now" },
+  "templating": { "list": [] },
   "panels": [
     {
       "id": 1,
       "title": "Active Borrowings",
       "type": "stat",
       "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "borrowings_active_total",
           "legendFormat": "active"
         }
@@ -25,9 +27,10 @@
       "title": "Overdue Borrowings",
       "type": "stat",
       "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "borrowings_overdue_total",
           "legendFormat": "overdue"
         }
@@ -47,23 +50,14 @@
       "title": "Daily Borrowings",
       "type": "timeseries",
       "gridPos": { "x": 0, "y": 4, "w": 24, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
-          "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
           "expr": "sum(increase(borrowings_created_total[1d]))",
           "legendFormat": "borrowings/day"
         }
       ]
     }
-  ],
-  "templating": {
-    "list": [
-      {
-        "name": "DS_PROMETHEUS",
-        "type": "datasource",
-        "pluginId": "prometheus",
-        "hide": 0
-      }
-    ]
-  }
+  ]
 }
