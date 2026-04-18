@@ -3,6 +3,7 @@ import { Book } from '../entities/Book';
 import { Borrowing, BorrowingStatus } from '../entities/Borrowing';
 import { AppError } from '../middleware/errorHandler.middleware';
 import { CacheService } from './CacheService';
+import { borrowingsActive, borrowingsCreated } from '../config/metrics';
 
 const BORROW_DAYS = 30;
 
@@ -45,6 +46,9 @@ export const BorrowingService = {
       await CacheService.delPattern('books:list:*');
       await CacheService.delPattern(`borrowings:my:${userId}:*`);
 
+      borrowingsCreated.add(1);
+      borrowingsActive.add(1);
+
       return saved;
     });
   },
@@ -71,6 +75,8 @@ export const BorrowingService = {
       await CacheService.delPattern('books:list:*');
       await CacheService.delPattern(`borrowings:my:${borrowing.userId}:*`);
       await CacheService.delPattern('borrowings:all:*');
+
+      borrowingsActive.add(-1);
 
       return (await borrowingRepo.findOne({ where: { id: borrowingId } }))!;
     });

@@ -16,7 +16,7 @@
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "borrowings_active_total",
+          "expr": "borrowings_active",
           "legendFormat": "active"
         }
       ],
@@ -24,38 +24,30 @@
     },
     {
       "id": 2,
-      "title": "Overdue Borrowings",
+      "title": "Total Borrowings Created",
       "type": "stat",
       "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "borrowings_overdue_total",
-          "legendFormat": "overdue"
+          "expr": "borrowings_created_total",
+          "legendFormat": "created"
         }
       ],
-      "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"] },
-        "thresholds": {
-          "steps": [
-            { "color": "green", "value": null },
-            { "color": "red", "value": 1 }
-          ]
-        }
-      }
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } }
     },
     {
       "id": 3,
-      "title": "Daily Borrowings",
+      "title": "Daily Borrowings Rate",
       "type": "timeseries",
       "gridPos": { "x": 0, "y": 4, "w": 24, "h": 8 },
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "sum(increase(borrowings_created_total[1d]))",
-          "legendFormat": "borrowings/day"
+          "expr": "rate(borrowings_created_total[5m])",
+          "legendFormat": "borrowings/s"
         }
       ]
     }

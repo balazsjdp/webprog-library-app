@@ -1,5 +1,6 @@
 import { createHash } from 'crypto';
 import { redis } from '../config/redis';
+import { cacheHits, cacheMisses } from '../config/metrics';
 
 export function hashParams(params: Record<string, unknown>): string {
   return createHash('md5').update(JSON.stringify(params)).digest('hex');
@@ -8,7 +9,13 @@ export function hashParams(params: Record<string, unknown>): string {
 export const CacheService = {
   async get<T>(key: string): Promise<T | null> {
     const data = await redis.get(key);
-    return data ? (JSON.parse(data) as T) : null;
+    const prefix = key.split(':')[0];
+    if (data) {
+      cacheHits.add(1, { prefix });
+      return JSON.parse(data) as T;
+    }
+    cacheMisses.add(1, { prefix });
+    return null;
   },
 
   async set(key: string, value: unknown, ttlSeconds: number): Promise<void> {
