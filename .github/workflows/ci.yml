@@ -71,6 +71,10 @@ jobs:
         working-directory: backend
         run: npm test -- --runInBand
 
+      - name: Run frontend tests
+        working-directory: frontend
+        run: npm test
+
       - name: Build backend Docker image
         run: docker build -t konyvtar-backend ./backend
 
