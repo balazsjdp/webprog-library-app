@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { BookService } from '../services/BookService';
+import { BorrowingService } from '../services/BorrowingService';
 import { OpenLibraryService } from '../services/OpenLibraryService';
 import { AppError } from '../middleware/errorHandler.middleware';
 
@@ -88,5 +89,15 @@ export const AdminController = {
     }
     const book = await BookService.update(req.params.id, { totalCopies });
     res.json(book);
+  },
+
+  async getAllBorrowings(req: Request, res: Response): Promise<void> {
+    const page = Math.max(1, Number(req.query.page) || 1);
+    const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 20));
+    const status = Array.isArray(req.query.status)
+      ? undefined
+      : (req.query.status as string | undefined);
+    const result = await BorrowingService.getAllBorrowings(page, limit, status);
+    res.json(result);
   },
 };
