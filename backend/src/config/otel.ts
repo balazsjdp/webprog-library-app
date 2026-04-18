@@ -13,7 +13,6 @@ if (endpoint && process.env.NODE_ENV !== 'test') {
   const sdk = new NodeSDK({
     resource: new Resource({ [ATTR_SERVICE_NAME]: serviceName }),
     traceExporter: new OTLPTraceExporter({ url: `${endpoint}/v1/traces` }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     metricReader: new PeriodicExportingMetricReader({
       exporter: new OTLPMetricExporter({ url: `${endpoint}/v1/metrics` }),
       exportIntervalMillis: 15000,
