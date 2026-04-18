@@ -1,0 +1,33 @@
+# Dev overrides: expose ports for local development without Docker frontend/backend
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      target: builder
+    volumes:
+      - ./backend/src:/app/src
+    command: npm run dev
+    ports:
+      - "4000:4000"
+    environment:
+      NODE_ENV: development
+
+  otel-collector:
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+
+  prometheus:
+    ports:
+      - "9090:9090"
+
+  tempo:
+    ports:
+      - "3200:3200"

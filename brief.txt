@@ -1,0 +1,45 @@
+A projekt célja egy webalkalmazás fejlesztése, amely az alábbi funkciókat látja el:
+
+Az alkalmazás egy online könyvtár, ahol könyveket lehet keresni és kölcsönözni.
+Fő funkciók:
+- Könyvek listázása és részletek megtekintése.
+- Könyvek kölcsönzése.
+
+
+Opcionális funkciók:
+- Felhasználói fiókok létrehozása és kölcsönzések nyomon követése.
+- Admin felület könyvek hozzáadására és szerkesztésére.
+- Kölcsönzési határidők kezelése és értesítések küldése.
+
+
+Az alábbi követelményeknek felel meg:
+
+- Legalább 2 API végponttal rendelkezik
+- A kliensoldal reszponzív
+- Adattárolást valósít meg relációs adatbázis segítségével
+- Legalább 2 unit- vagy integrációs tesztet tartalmaz
+- Git verziókezelőt használ, legalább 5 jól strukturált commit mellett
+- Markdown formátumú dokumentációt biztosít, amely tartalmazza az alkalmazás felépítését, konfigurációját és a végpontok leírását
+
+Legalább 2 elemet kell választani az alábbi kiegészítő funkciók közül:
+
+- Kontrénerizáció (pl. Docker)
+- Media Capture and Streams API
+- Offline mód (pl. Service Worker)
+- Autentikáció (pl. JWT)
+- ORM rendszer használata
+- Caching megvalósítása (pl. Redis)
+- Alkalmazás instrumentálása (OpenTelemetry)
+- CI/CD integráció
+- Cloud szolgáltatások használata (pl. AWS Elastic Beanstalk, S3, Lambda, RDS)
+- Aszinkron üzenetküldés
+
+Benyújtás módja:
+
+A kész csomagnak tartalmaznia kell:
+
+- A forráskódot
+- A .git könyvtárat
+- Az adatbázis létrehozásához szükséges SQL script fájlt
+- A dokumentációt
+- Amennyiben releváns, képernyőképek a megvalósított kiegészító funkciókról (pl. monitoringról, cloud szolgáltatásokról)
